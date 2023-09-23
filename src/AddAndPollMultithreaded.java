@@ -49,7 +49,7 @@ public class AddAndPollMultithreaded {
         }
     });
 
-    /** This 
+    /** This is actually pretty useful in a simple multiplayer game **/
     public static void main(String... args){
         startTime = System.currentTimeMillis();
         a.start();
