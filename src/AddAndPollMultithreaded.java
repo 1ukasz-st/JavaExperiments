@@ -13,17 +13,18 @@ public class AddAndPollMultithreaded {
     /** This Queue is the main character here.
      * Java did not intend it to be perfectly thread safe.
      */
-    static Queue<Long> foo = new LinkedList<>();
+    static final Queue<Long> foo = new LinkedList<>();
     public static long startTime=-1;
 
     /** This thread has only 1 purpose: Adding elements to the queue in random moments **/
     static Thread a = new Thread(() -> {
         while(true){
             long curr = System.currentTimeMillis()-startTime;
-            System.out.printf("Adding: %d %n",curr);
             foo.add(curr);
+            System.out.printf("Adding: %d %n",curr);
+
             try{
-                Thread.sleep(ThreadLocalRandom.current().nextInt(10,1501));
+                Thread.sleep(ThreadLocalRandom.current().nextInt(0,50));
             }catch(InterruptedException ignored){}
         }
     });
@@ -55,3 +56,11 @@ public class AddAndPollMultithreaded {
         b.start();
     }
 }
+
+/* TWO IMPORTANT CHANGES: the adding delay and order of printing (thread a)
+ * First of all, it should now be possible to see a situation where an element gets added while the queue is being read.
+ * Despite that, the newly added element is not printed out as part of the queue in the reading process and there's no error.
+ * Additionally, in thread "a", the element is first added and then the user gets notified about that.
+ * Before that change, it was possible to see a message: "Adding: xxxx" and then the reading of the queue would get called and xxxx would not appear.
+ * That would be because xxxx hadn't been added yet and the reading was called in between System.out.println("Adding...") and the actual adding.
+ */
