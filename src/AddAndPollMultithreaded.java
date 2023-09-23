@@ -5,8 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * This program demonstrates a scenario where a data structure can be modified and/or read by multiple threads simultaneously,
  * without undefined behavior, race conditions, exceptions, thanks to the logic of the program.
- * No language-provided synchronization mechanisms are implemented, such as
- * synchronized methods/blocks, special datastructures from java.util.concurrent etc.
+ * No language-provided synchronization mechanisms are implemented.
  **/
 public class AddAndPollMultithreaded {
 
@@ -49,7 +48,7 @@ public class AddAndPollMultithreaded {
         }
     });
 
-    /** This 
+    /** This is actually pretty useful in a simple multiplayer game **/
     public static void main(String... args){
         startTime = System.currentTimeMillis();
         a.start();
