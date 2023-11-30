@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Util {
     public static final int N_CLIENTS = 3, DEFAULT_PORT = 9999;
     public static final int PACKET_SIZE = 1<<14;
-    public static final String SERVER_IP = "167.99.253.72";
+    public static final String SERVER_IP = "ip of server";
     public static final String NO_DATA = "NOTHING";
     public static final int MAX_FRAME_TIME = 16;
     private static final String EXTRA_DATA_MARKER = "#";
